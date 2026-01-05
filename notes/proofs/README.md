@@ -1,7 +1,7 @@
 # N AI + Web3 Lab — Research
 
 This repository contains research notes, experiments, and verifiable artifacts
-produced by the Mine AI + Web3 Lab.
+produced by the N AI + Web3 Lab.
 
 ## Focus
 - AI agents interacting with blockchain data
