@@ -1,0 +1,121 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Experiment001AIOutput",
+  "type": "object",
+  "required": [
+    "metadata",
+    "input_references",
+    "observations",
+    "reasoning",
+    "suggested_actions",
+    "limitations"
+  ],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": [
+        "experiment_id",
+        "architecture_version",
+        "timestamp",
+        "model_identifier"
+      ],
+      "properties": {
+        "experiment_id": { "type": "string" },
+        "architecture_version": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "model_identifier": { "type": "string" }
+      }
+    },
+    "input_references": {
+      "type": "object",
+      "required": [
+        "blockchain",
+        "network",
+        "block_range"
+      ],
+      "properties": {
+        "blockchain": { "type": "string" },
+        "network": { "type": "string" },
+        "block_range": {
+          "type": "object",
+          "required": ["from", "to"],
+          "properties": {
+            "from": { "type": "integer" },
+            "to": { "type": "integer" }
+          }
+        },
+        "transaction_hashes": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "contract_addresses": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "observations": {
+      "type": "object",
+      "properties": {
+        "detected_events": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "state_changes": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "anomalies": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "reasoning": {
+      "type": "object",
+      "required": ["summary", "confidence_level"],
+      "properties": {
+        "summary": { "type": "string" },
+        "assumptions": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "confidence_level": {
+          "type": "string",
+          "enum": ["low", "medium", "high"]
+        }
+      }
+    },
+    "suggested_actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["description", "risk_level", "requires_human_approval"],
+        "properties": {
+          "description": { "type": "string" },
+          "risk_level": {
+            "type": "string",
+            "enum": ["low", "medium", "high"]
+          },
+          "requires_human_approval": {
+            "type": "boolean",
+            "const": true
+          }
+        }
+      }
+    },
+    "limitations": {
+      "type": "object",
+      "properties": {
+        "data_gaps": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "uncertainty_sources": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}
